@@ -5,7 +5,9 @@ export const createDoctorProfile = async (req, res) => {
   try {
     const userId = req.user._id;
     const { specialization, experience, fees, bio } = req.body;
+    
     // ensure user is a doctor role
+    
     const user = await User.findById(userId);
     if (user.role !== "doctor") {
       return res.status(403).json({ message: "User is not a doctor" });
